@@ -182,7 +182,7 @@ def generate_rss(archive: list):
         fe.link(href='https://www.1101.com/')
 
         # Build description with image and author
-        author = entry_data.get('author', 'Shigesato Itoi')
+        author = entry_data.get('translated_author', entry_data.get('author', 'Shigesato Itoi'))
         translation = entry_data['translation']
         description = f'<img src="{DARLING_IMAGE_URL}" alt="Itoi signature" style="max-width: 100px; margin-bottom: 1em;" /><br/><strong>{author}</strong><br/><br/>{translation}'
 
@@ -212,9 +212,12 @@ def main():
         print(f"Essay already in archive (hash: {essay['hash']}), skipping")
         return
 
-    # Translate title and body
+    # Translate title, author, and body
     print("Translating title...")
     translated_title = translate_text(essay['title'], is_title=True).strip()
+
+    print("Translating author...")
+    translated_author = translate_text(essay['author'], is_title=True).strip()
 
     print("Translating essay...")
     translation = translate_text(essay['body'])
@@ -222,6 +225,7 @@ def main():
     # Add to archive
     essay['translation'] = translation
     essay['translated_title'] = translated_title
+    essay['translated_author'] = translated_author
     archive.insert(0, essay)  # Most recent first
 
     # Save and regenerate feed
