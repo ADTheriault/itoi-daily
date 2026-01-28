@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
   <channel>
     <title>Itoi's Daily Essay (Translated)</title>
     <link>https://adtheriault.github.io/itoi-daily/feed.xml</link>
@@ -13,11 +13,13 @@
       <link>https://www.1101.com/</link>
     </image>
     <language>en</language>
-    <lastBuildDate>Wed, 28 Jan 2026 10:55:15 +0000</lastBuildDate>
+    <dc:publisher>Hobonichi</dc:publisher>
+    <lastBuildDate>Wed, 28 Jan 2026 13:24:16 +0000</lastBuildDate>
     <item>
       <title>Well, that's not how things usually work out.</title>
       <link>https://www.1101.com/</link>
-      <description>&lt;img src="https://www.1101.com/home/2025/images/home/darling.png" alt="Itoi signature" style="max-width: 100px; margin-bottom: 1em;" /&gt;&lt;br/&gt;&lt;strong&gt;Shigesato Itoi&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The other day, as part of the ongoing series on aging and death that we run irregularly at Hobonichi, I had a conversation with Nurse Asami, who just published a book called *Let's Think About How to End Our Lives*, and with Hatano Hiroshi. I'll leave the details for when the piece eventually appears on Hobonichi, but something Asami said so casually—she's a working nurse—really stuck with me. "When people die, you know, it's not really like in movies or TV shows—lying peacefully in bed surrounded by family, quietly passing away." Coming from a nurse who's witnessed this scene countless times, her words carry real weight.
+      <description>Our expectations of how life should look often come from movies and television rather than reality—real life is messy, imperfect, and full of cracks and patches, and that's entirely natural.</description>
+      <content:encoded>The other day, as part of the ongoing series on aging and death that we run irregularly at Hobonichi, I had a conversation with Nurse Asami, who just published a book called *Let's Think About How to End Our Lives*, and with Hatano Hiroshi. I'll leave the details for when the piece eventually appears on Hobonichi, but something Asami said so casually—she's a working nurse—really stuck with me. "When people die, you know, it's not really like in movies or TV shows—lying peacefully in bed surrounded by family, quietly passing away." Coming from a nurse who's witnessed this scene countless times, her words carry real weight.
 
 The conversation continued from there, but yes, exactly—those "familiar scenes" get lodged in our memory as things we think we've seen before. What we generally imagine "should" happen is largely based on what we've absorbed from movies and television as staged drama.
 
@@ -27,8 +29,10 @@ Now that I'm grown up, of course I understand this. Every single person has a pa
 
 Of course, we still enjoy dramas as dramas.
 
-Thank you for visiting Hobonichi again today. There are also healthy days spent complaining about aches and itches.</description>
+Thank you for visiting Hobonichi again today. There are also healthy days spent complaining about aches and itches.</content:encoded>
       <guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#e1280565fffa</guid>
+    <dc:author>Shigesato Itoi</dc:author>
+    <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
       <pubDate>Wed, 28 Jan 2026 10:54:58 +0000</pubDate>
     </item>
   </channel>
