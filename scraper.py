@@ -76,6 +76,21 @@ def scrape_essay() -> dict | None:
         print("Could not extract essay content")
         return None
 
+    # Clean up the essay text - remove footer lines about update times
+    lines = essay_text.split('\n')
+    cleaned_lines = []
+    seen_lines = set()
+    for line in lines:
+        # Skip footer lines about update times
+        if 'ほぼ日の更新時間' in line:
+            continue
+        # Skip duplicate lines
+        if line.strip() in seen_lines:
+            continue
+        seen_lines.add(line.strip())
+        cleaned_lines.append(line)
+    essay_text = '\n'.join(cleaned_lines).strip()
+
     # Generate a hash to detect duplicate content
     content_hash = hashlib.md5(essay_text.encode()).hexdigest()[:12]
 
