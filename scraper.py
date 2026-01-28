@@ -7,12 +7,13 @@ translates it via Claude API, and updates an RSS feed.
 """
 
 import os
+import re
 import json
 import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
-import requests
+from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from anthropic import Anthropic
 from feedgen.feed import FeedGenerator
@@ -26,58 +27,63 @@ ARCHIVE_FILE = OUTPUT_DIR / "archive.json"
 
 
 def scrape_essay() -> dict | None:
-    """Fetch and extract Itoi's daily essay from 1101.com."""
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-        "Accept-Language": "ja,en;q=0.9",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    }
+    """Fetch and extract Itoi's daily essay from 1101.com using Playwright."""
 
-    try:
-        response = requests.get(ESSAY_URL, headers=headers, timeout=30)
-        response.raise_for_status()
-        response.encoding = 'utf-8'
-    except requests.RequestException as e:
-        print(f"Failed to fetch page: {e}")
-        return None
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        page.goto(ESSAY_URL)
+        page.wait_for_timeout(2000)  # Wait for JS to render
 
-    soup = BeautifulSoup(response.text, 'html.parser')
+        html = page.content()
+        browser.close()
 
-    # Extract essay content - multiple selector strategies
-    essay_text = None
+    soup = BeautifulSoup(html, 'html.parser')
+
     title = None
+    body = None
 
-    # Strategy 1: Look for Itoi's column section by author name
-    for section in soup.find_all(['div', 'section', 'article']):
-        text = section.get_text()
-        if '糸井重里' in text and len(text) > 500:
-            # Found a substantial section mentioning Itoi
-            paragraphs = section.find_all('p')
-            if paragraphs:
-                essay_text = '\n\n'.join(p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True))
-                # Try to find title
-                h_tag = section.find(['h1', 'h2', 'h3'])
-                if h_tag:
-                    title = h_tag.get_text(strip=True)
-                break
+    # Strategy 1: Use specific selectors (like hellodarling)
+    title_el = soup.select_one("div.darling-title h2")
+    body_el = soup.select_one("div.darling-text")
 
-    # Strategy 2: Broader search if strategy 1 fails
-    if not essay_text:
-        # Look for main content area
-        main = soup.find('main') or soup.find('div', {'id': 'main'}) or soup.find('div', {'class': 'main'})
-        if main:
-            paragraphs = main.find_all('p')
-            japanese_paragraphs = [p.get_text(strip=True) for p in paragraphs
-                                   if p.get_text(strip=True) and any('\u3040' <= c <= '\u30ff' for c in p.get_text())]
-            if japanese_paragraphs:
-                essay_text = '\n\n'.join(japanese_paragraphs[:20])  # Limit to first 20 paragraphs
+    if title_el and title_el.get_text(strip=True):
+        title = title_el.get_text(strip=True)
+    else:
+        # Fallback: extract title from x-data attribute
+        darling_div = soup.select_one("div.darling")
+        if darling_div and darling_div.has_attr("x-data"):
+            match = re.search(r"darlingTitle:\s*`(.*?)`", darling_div["x-data"])
+            if match:
+                title = match.group(1)
 
-    if not essay_text or len(essay_text) < 200:
+    if body_el:
+        # Get all paragraphs from the body
+        paragraphs = body_el.find_all('p')
+        if paragraphs:
+            body = '\n\n'.join(p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True))
+        else:
+            body = body_el.get_text(strip=True)
+
+    # Strategy 2: Fallback to broader search if specific selectors fail
+    if not body:
+        for section in soup.find_all(['div', 'section', 'article']):
+            text = section.get_text()
+            if '糸井重里' in text and len(text) > 500:
+                paragraphs = section.find_all('p')
+                if paragraphs:
+                    body = '\n\n'.join(p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True))
+                    h_tag = section.find(['h1', 'h2', 'h3'])
+                    if h_tag and not title:
+                        title = h_tag.get_text(strip=True)
+                    break
+
+    if not body or len(body) < 200:
         print("Could not extract essay content")
         return None
 
-    # Clean up the essay text - remove footer lines about update times
-    lines = essay_text.split('\n')
+    # Clean up the essay text
+    lines = body.split('\n')
     cleaned_lines = []
     seen_lines = set()
     for line in lines:
@@ -89,14 +95,14 @@ def scrape_essay() -> dict | None:
             continue
         seen_lines.add(line.strip())
         cleaned_lines.append(line)
-    essay_text = '\n'.join(cleaned_lines).strip()
+    body = '\n'.join(cleaned_lines).strip()
 
     # Generate a hash to detect duplicate content
-    content_hash = hashlib.md5(essay_text.encode()).hexdigest()[:12]
+    content_hash = hashlib.md5(body.encode()).hexdigest()[:12]
 
     return {
         'title': title or f"今日のダーリン - {datetime.now().strftime('%Y年%m月%d日')}",
-        'body': essay_text,
+        'body': body,
         'date': datetime.now(timezone.utc).isoformat(),
         'hash': content_hash,
     }
