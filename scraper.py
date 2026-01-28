@@ -108,20 +108,21 @@ def scrape_essay() -> dict | None:
     }
 
 
-def translate_essay(japanese_text: str) -> str:
-    """Translate essay using Claude API."""
+def translate_text(japanese_text: str, is_title: bool = False) -> str:
+    """Translate text using Claude API."""
     api_key = os.environ.get('ANTHROPIC_API_KEY')
     if not api_key:
         raise ValueError("ANTHROPIC_API_KEY environment variable not set")
 
     client = Anthropic(api_key=api_key)
 
-    message = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=4000,
-        messages=[{
-            "role": "user",
-            "content": f"""You are translating a Japanese personal essay into natural, literary English.
+    if is_title:
+        prompt = f"""Translate this Japanese essay title into natural English.
+Output only the translated title, nothing else.
+
+{japanese_text}"""
+    else:
+        prompt = f"""You are translating a Japanese personal essay into natural, literary English.
 Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
 Do not include boilerplate like 'Here is the translation.' Do not explain your output.
 Preserve paragraph breaks (two line breaks = new paragraph).
@@ -129,7 +130,11 @@ Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it 
 If there is a phrase or idiom that doesn't translate easily, include a minimal footnote only if necessary.
 
 {japanese_text}"""
-        }]
+
+    message = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=4000,
+        messages=[{"role": "user", "content": prompt}]
     )
 
     return message.content[0].text
@@ -193,13 +198,12 @@ def main():
         print(f"Essay already in archive (hash: {essay['hash']}), skipping")
         return
 
-    # Translate
-    print("Translating essay...")
-    translation = translate_essay(essay['body'])
+    # Translate title and body
+    print("Translating title...")
+    translated_title = translate_text(essay['title'], is_title=True).strip()
 
-    # Extract translated title (first line if it looks like a title)
-    lines = translation.strip().split('\n')
-    translated_title = lines[0] if lines and len(lines[0]) < 100 else essay['title']
+    print("Translating essay...")
+    translation = translate_text(essay['body'])
 
     # Add to archive
     essay['translation'] = translation
