@@ -1,10 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
   <channel>
     <title>Itoi's Daily Essay (Translated)</title>
-    <link>https://adtheriault.github.io/itoi-daily/</link>
+    <link>https://adtheriault.github.io/itoi-daily/feed.xml</link>
     <description>Daily essays by Shigesato Itoi from 1101.com, translated to English</description>
     <atom:link href="https://adtheriault.github.io/itoi-daily/feed.xml" rel="self"/>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <image>
+      <url>https://www.1101.com/images/home/darling.png</url>
+      <title>Itoi's Daily Essay</title>
+      <link>https://www.1101.com/</link>
+    </image>
     <language>en</language>
+    <lastBuildDate>Wed, 28 Jan 2026 10:36:23 +0000</lastBuildDate>
+    <item>
+      <title>Generally speaking, things don't work out that way.</title>
+      <link>https://www.1101.com/</link>
+      <description>&lt;img src="https://www.1101.com/images/home/darling.png" alt="Itoi signature" style="max-width: 100px; margin-bottom: 1em;" /&gt;&lt;br/&gt;&lt;strong&gt;糸井重里&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;・The other day, I had a conversation with Nurse Asami, who just published a book called *Let's Think About How to End Our Lives*, and Hatano Hiroshi, as part of the ongoing "Aging and Death" project we do irregularly at Hobo Nikkan. I'll leave the details for when it's published on Hobo Nikkan for you to read, but something that practicing nurse Asami said so matter-of-factly has really stuck with me. "When people die, it's not really like in movies or TV dramas—you know, lying peacefully in bed surrounded by family, passing away quietly." Coming from a nurse who has witnessed such scenes countless times, those words carry real weight. The conversation continued from there, but yes, that's exactly it—the "typical scenes" we think we know are just memories of things we've seen before. What we generally imagine "this is probably how it goes" is mostly stuff we've picked up from movies and TV productions. When I was a kid, American family sitcoms were popular, and I'd be enjoying watching them when some drunk old man would start yelling at the TV screen: "Families like that don't exist! It's all bullshit!" I really hated that. Later, as an adult, I heard almost identical words from Yoshimoto Takaaki many times. He'd declare with complete certainty: "Families without any problems don't exist anywhere." Well, being an adult now, I understand that. Every single person has a past, present, and future—vertical, horizontal, diagonal, near and far dimensions. The ways people connect with each other are equally varied. Something perfectly round and smoothly happy is just a pie in the sky. We tend to picture "families straight out of a painting," but of course no such thing exists in reality. It's all scratches, cracks, breaks, worn spots, patches—that's what everything is made of. Working with all that is just the natural way of things. Though of course we still enjoy dramas as dramas. Thank you for coming to Hobo Nikkan today. There are also healthy days spent complaining about aches and pains.</description>
+      <guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#e1280565fffa</guid>
+      <pubDate>Wed, 28 Jan 2026 10:36:06 +0000</pubDate>
+    </item>
   </channel>
 </rss>
