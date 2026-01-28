@@ -21,7 +21,7 @@ This project automatically:
 
 ## How It Works
 
-- **Schedule:** Runs daily at 9:00 AM JST via GitHub Actions
+- **Schedule:** Runs daily at 11:30 AM JST via GitHub Actions
 - **Translation:** Uses Claude API (claude-sonnet) for natural translations that preserve Itoi's conversational tone
 - **Hosting:** RSS feed hosted on GitHub Pages
 
