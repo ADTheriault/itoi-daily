@@ -24,7 +24,7 @@ ESSAY_URL = "https://www.1101.com/"
 OUTPUT_DIR = Path(__file__).parent / "docs"
 FEED_FILE = OUTPUT_DIR / "feed.xml"
 ARCHIVE_FILE = OUTPUT_DIR / "archive.json"
-DARLING_IMAGE_URL = "https://www.1101.com/images/home/darling.png"
+DARLING_IMAGE_URL = "https://www.1101.com/home/2025/images/home/darling.png"
 
 
 def scrape_essay() -> dict | None:
