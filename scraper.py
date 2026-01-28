@@ -24,6 +24,7 @@ ESSAY_URL = "https://www.1101.com/"
 OUTPUT_DIR = Path(__file__).parent / "docs"
 FEED_FILE = OUTPUT_DIR / "feed.xml"
 ARCHIVE_FILE = OUTPUT_DIR / "archive.json"
+DARLING_IMAGE_URL = "https://www.1101.com/images/home/darling.png"
 
 
 def scrape_essay() -> dict | None:
@@ -41,10 +42,12 @@ def scrape_essay() -> dict | None:
     soup = BeautifulSoup(html, 'html.parser')
 
     title = None
+    author = None
     body = None
 
     # Strategy 1: Use specific selectors (like hellodarling)
     title_el = soup.select_one("div.darling-title h2")
+    author_el = soup.select_one("div.darling-title h3")
     body_el = soup.select_one("div.darling-text")
 
     if title_el and title_el.get_text(strip=True):
@@ -56,6 +59,9 @@ def scrape_essay() -> dict | None:
             match = re.search(r"darlingTitle:\s*`(.*?)`", darling_div["x-data"])
             if match:
                 title = match.group(1)
+
+    if author_el and author_el.get_text(strip=True):
+        author = author_el.get_text(strip=True)
 
     if body_el:
         # Get all paragraphs from the body
@@ -102,6 +108,7 @@ def scrape_essay() -> dict | None:
 
     return {
         'title': title or f"今日のダーリン - {datetime.now().strftime('%Y年%m月%d日')}",
+        'author': author or "糸井重里",
         'body': body,
         'date': datetime.now(timezone.utc).isoformat(),
         'hash': content_hash,
@@ -165,6 +172,7 @@ def generate_rss(archive: list):
     fg.link(href='https://adtheriault.github.io/itoi-daily/feed.xml', rel='self')
     fg.subtitle('Daily essays by Shigesato Itoi from 1101.com, translated to English')
     fg.language('en')
+    fg.image(url=DARLING_IMAGE_URL, title="Itoi's Daily Essay", link='https://www.1101.com/')
 
     # Add entries (most recent first, limit to 30)
     for entry_data in archive[:30]:
@@ -172,7 +180,13 @@ def generate_rss(archive: list):
         fe.id(f"https://adtheriault.github.io/itoi-daily/#{entry_data['hash']}")
         fe.title(entry_data.get('translated_title', entry_data['title']))
         fe.link(href='https://www.1101.com/')
-        fe.description(entry_data['translation'])
+
+        # Build description with image and author
+        author = entry_data.get('author', 'Shigesato Itoi')
+        translation = entry_data['translation']
+        description = f'<img src="{DARLING_IMAGE_URL}" alt="Itoi signature" style="max-width: 100px; margin-bottom: 1em;" /><br/><strong>{author}</strong><br/><br/>{translation}'
+
+        fe.description(description)
         fe.published(entry_data['date'])
         fe.updated(entry_data['date'])
 
