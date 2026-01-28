@@ -8,7 +8,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 28 Jan 2026 09:56:55 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jan 2026 10:16:51 +0000</lastBuildDate>
     <item>
       <title>**Today's Darling - January 28, 2026**</title>
       <link>https://www.1101.com/</link>
@@ -27,6 +27,17 @@ Hobo Nikkan's update time is now 11 AM every day, including weekends and holiday
 Hobo Nikkan's update time is now 11 AM every day, including weekends and holidays.</description>
       <guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#1da65c7b3ca8</guid>
       <pubDate>Wed, 28 Jan 2026 09:56:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>だいたい、そうはいくもんじゃない。</title>
+      <link>https://www.1101.com/</link>
+      <description>・The other day, I spoke with Nurse Asami—who just published a book called *Let's Think About How to End Our Lives*—and Hatano Hiroshi as part of an ongoing, sporadic series we do at Hobonichi on "aging and death." I'll leave the details for when it's published on Hobonichi for you to read, but something that practicing nurse Asami said so casually has really stuck with me. "When people die, it's not really like in movies or TV dramas—you know, lying peacefully in bed surrounded by family, going quietly." When a nurse who has witnessed this countless times says something like that, it carries real weight.
+
+The conversation continued from there, but yes, exactly—those familiar scenes get lodged in our memory as something we've seen before. What we generally imagine "it's probably like this" is largely based on what we've encountered through movies and television. When I was a kid, American family sitcoms were popular, and I'd be happily watching them when some drunk old man would start yelling at the screen: "Families like that don't exist! It's all bullshit!" I really hated that. Later, as an adult, I heard something remarkably similar from Yoshimoto Takaaki over and over: "There's no such thing as a family without problems anywhere," he'd declare. Now that I'm grown up, I understand. Every single person has a past, present, and future—vertical, horizontal, diagonal dimensions, things near and far. The ways people connect to each other are equally varied. Something perfectly round and smoothly happy is a pie in the sky. We tend to imagine these "picture-perfect families," but of course no such thing exists in reality. It's all scratches, cracks, breaks, worn spots, patches. And getting by with all of that is the natural way of things. Though of course we still enjoy dramas as dramas.
+
+Thank you for coming to Hobonichi today. There are also days of complaining about aches and pains while being perfectly healthy.</description>
+      <guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#e1280565fffa</guid>
+      <pubDate>Wed, 28 Jan 2026 10:16:38 +0000</pubDate>
     </item>
   </channel>
 </rss>
