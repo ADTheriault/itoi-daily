@@ -2,8 +2,8 @@ name: Daily Itoi Essay
 
 on:
   schedule:
-    # Run daily at 9:00 AM JST (midnight UTC)
-    - cron: '0 0 * * *'
+    # Run daily at 11:30 AM JST (2:30 AM UTC) - after 11 AM JST update
+    - cron: '30 2 * * *'
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
