@@ -102,7 +102,7 @@ def scrape_essay() -> dict | None:
     }
 
 
-def translate_essay(japanese_text: str, title: str) -> str:
+def translate_essay(japanese_text: str) -> str:
     """Translate essay using Claude API."""
     api_key = os.environ.get('ANTHROPIC_API_KEY')
     if not api_key:
@@ -115,18 +115,13 @@ def translate_essay(japanese_text: str, title: str) -> str:
         max_tokens=4000,
         messages=[{
             "role": "user",
-            "content": f"""Translate this Japanese essay by Shigesato Itoi into natural, readable English.
+            "content": f"""You are translating a Japanese personal essay into natural, literary English.
+Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
+Do not include boilerplate like 'Here is the translation.' Do not explain your output.
+Preserve paragraph breaks (two line breaks = new paragraph).
+Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone.
+If there is a phrase or idiom that doesn't translate easily, include a minimal footnote only if necessary.
 
-Guidelines:
-- Preserve Itoi's warm, conversational, and reflective tone
-- Keep the translation flowing naturally - don't be overly literal
-- For cultural references that English readers might not know, add a brief [translator's note] inline
-- Preserve any wordplay or puns where possible, with explanation if needed
-- Keep paragraph breaks as in the original
-
-Title: {title}
-
-Essay:
 {japanese_text}"""
         }]
     )
@@ -194,7 +189,7 @@ def main():
 
     # Translate
     print("Translating essay...")
-    translation = translate_essay(essay['body'], essay['title'])
+    translation = translate_essay(essay['body'])
 
     # Extract translated title (first line if it looks like a title)
     lines = translation.strip().split('\n')
