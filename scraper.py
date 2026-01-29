@@ -237,11 +237,11 @@ def generate_rss(archive: list):
             '</language>\n    <dc:publisher>Hobonichi</dc:publisher>'
         )
 
-    # Add icon after dc:publisher if not present
+    # Add icon after dc:publisher if not present (using PNG format for RSS reader compatibility)
     if '<icon>' not in xml_content:
         xml_content = xml_content.replace(
             '</dc:publisher>',
-            '</dc:publisher>\n    <icon>https://www.1101.com/favicon.ico</icon>',
+            f'</dc:publisher>\n    <icon>{DARLING_IMAGE_URL}</icon>',
             1
         )
 
