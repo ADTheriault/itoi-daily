@@ -251,6 +251,8 @@ def generate_rss(archive: list):
             replacement = f'{pattern}\n    {author_tag}\n    {thumbnail_tag}'
             xml_content = xml_content.replace(pattern, replacement, 1)
 
+    # Write final XML (after all processing: namespaces and metadata)
+    # feedgen already outputs items in correct order (newest first)
     with open(FEED_FILE, 'w', encoding='utf-8') as f:
         f.write(xml_content)
 
