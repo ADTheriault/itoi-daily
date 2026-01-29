@@ -14,7 +14,18 @@
     </image>
     <language>en</language>
     <dc:publisher>Hobonichi</dc:publisher>
-    <lastBuildDate>Thu, 29 Jan 2026 05:29:47 +0000</lastBuildDate>
+    <icon>https://www.1101.com/favicon.ico</icon>
+    <lastBuildDate>Thu, 29 Jan 2026 11:35:16 +0000</lastBuildDate>
+    <item>
+      <title>While Eating Sandwiches in the Middle of the Night.</title>
+      <link>https://www.1101.com/</link>
+      <description>The essay argues that famous historical legends, regardless of their truth, function as memorable "single posters" that effectively capture and transmit key ideas across generations. These condensed stories persist because they work as powerful, visual narratives that stick in our collective memory.</description>
+      <content:encoded>・According to legend, the sandwich was created when the Earl of Sandwich wanted to eat while playing cards, so he had something put between bread so he could eat it with one hand. But that's probably bullshit. I haven't looked it up, but these kinds of stories are usually made up, aren't they? Even without dragging earls and dukes into it, I'm sure people were putting stuff between bread long before that. But if the sandwich didn't come from someone's name, then how did it get that name? I don't know. I have no idea. I didn't do anything—it just naturally ended up that way. We probably don't understand the etymology of most nouns anyway. But almost everyone in the world who knows what a sandwich is also knows the story of the "Duke of Sandwich" and thinks, well, that must be where it comes from. Same with Archimedes' principle—supposedly he shouted "Eureka!" while taking a bath and ran out naked, but I doubt that ever happened. Then again, it's not like he came back to deny it, so people all over the world just went ahead and stripped Archimedes naked. And "Newton's apple," too. I think that legend has grown so rich with tributaries that they even talk about what variety of apple it was that fell. It's too late to ask Newton "Is that really what happened?" But people everywhere think "Newton equals apple." There's also "Columbus's egg," and in Japan we have "Mōri Motonari's three arrows" and "Kinoshita Tōkichirō's sandals" (which became brilliant material in *The Toyotomi Brothers!*). I've been rattling off examples as they come to mind, but with all these stories, it doesn't matter whether they're true or false—they're legends that "that's how it happened." They must be "masterpieces" that keep getting passed down through the generations. And here's what I've realized: every one of these legends works as "a single poster." Thank you for coming to "Hobo Nikkan" again today. Legends are "stories," but they're also single posters.</content:encoded>
+      <guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#69dfd87c0a68</guid>
+    <dc:author>Shigesato Itoi</dc:author>
+    <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
+      <pubDate>Thu, 29 Jan 2026 05:29:29 +0000</pubDate>
+    </item>
     <item>
       <title>Well, that's not how things usually work out.</title>
       <link>https://www.1101.com/</link>
@@ -34,16 +45,6 @@ Thank you for visiting Hobonichi again today. There are also healthy days spent 
     <dc:author>Shigesato Itoi</dc:author>
     <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
       <pubDate>Wed, 28 Jan 2026 10:54:58 +0000</pubDate>
-    </item>
-    <item>
-      <title>While Eating Sandwiches in the Middle of the Night.</title>
-      <link>https://www.1101.com/</link>
-      <description>The essay argues that famous historical legends, regardless of their truth, function as memorable "single posters" that effectively capture and transmit key ideas across generations. These condensed stories persist because they work as powerful, visual narratives that stick in our collective memory.</description>
-      <content:encoded>・According to legend, the sandwich was created when the Earl of Sandwich wanted to eat while playing cards, so he had something put between bread so he could eat it with one hand. But that's probably bullshit. I haven't looked it up, but these kinds of stories are usually made up, aren't they? Even without dragging earls and dukes into it, I'm sure people were putting stuff between bread long before that. But if the sandwich didn't come from someone's name, then how did it get that name? I don't know. I have no idea. I didn't do anything—it just naturally ended up that way. We probably don't understand the etymology of most nouns anyway. But almost everyone in the world who knows what a sandwich is also knows the story of the "Duke of Sandwich" and thinks, well, that must be where it comes from. Same with Archimedes' principle—supposedly he shouted "Eureka!" while taking a bath and ran out naked, but I doubt that ever happened. Then again, it's not like he came back to deny it, so people all over the world just went ahead and stripped Archimedes naked. And "Newton's apple," too. I think that legend has grown so rich with tributaries that they even talk about what variety of apple it was that fell. It's too late to ask Newton "Is that really what happened?" But people everywhere think "Newton equals apple." There's also "Columbus's egg," and in Japan we have "Mōri Motonari's three arrows" and "Kinoshita Tōkichirō's sandals" (which became brilliant material in *The Toyotomi Brothers!*). I've been rattling off examples as they come to mind, but with all these stories, it doesn't matter whether they're true or false—they're legends that "that's how it happened." They must be "masterpieces" that keep getting passed down through the generations. And here's what I've realized: every one of these legends works as "a single poster." Thank you for coming to "Hobo Nikkan" again today. Legends are "stories," but they're also single posters.</content:encoded>
-      <guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#69dfd87c0a68</guid>
-    <dc:author>Shigesato Itoi</dc:author>
-    <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
-      <pubDate>Thu, 29 Jan 2026 05:29:29 +0000</pubDate>
     </item>
   </channel>
 </rss>

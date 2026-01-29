@@ -237,6 +237,14 @@ def generate_rss(archive: list):
             '</language>\n    <dc:publisher>Hobonichi</dc:publisher>'
         )
 
+    # Add icon after dc:publisher if not present
+    if '<icon>' not in xml_content:
+        xml_content = xml_content.replace(
+            '</dc:publisher>',
+            '</dc:publisher>\n    <icon>https://www.1101.com/favicon.ico</icon>',
+            1
+        )
+
     # Add dc:author and media:thumbnail to each item
     import re
     for entry_data in archive[:30]:
@@ -251,6 +259,8 @@ def generate_rss(archive: list):
             replacement = f'{pattern}\n    {author_tag}\n    {thumbnail_tag}'
             xml_content = xml_content.replace(pattern, replacement, 1)
 
+    # Write final XML (after all processing: namespaces and metadata)
+    # feedgen already outputs items in correct order (newest first)
     with open(FEED_FILE, 'w', encoding='utf-8') as f:
         f.write(xml_content)
 
