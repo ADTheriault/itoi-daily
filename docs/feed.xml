@@ -1,18 +1,12 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US">
-  <id>https://adtheriault.github.io/itoi-daily/</id>
-  <title>Itoi's Daily Essay (Translated)</title>
-  <updated>2026-01-29T12:48:50.633087+00:00</updated>
-  <author>
-    <name>Shigesato Itoi</name>
-    <email>translated@example.com</email>
-  </author>
-  <link href="https://adtheriault.github.io/itoi-daily/" rel="alternate" type="text/html"/>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en">
+  <title type="text">Today's Darling</title>
+  <subtitle>Daily essays by Shigesato Itoi from 1101.com, translated to English.</subtitle>
+  <updated>2026-01-29T12:59:52.603302+00:00</updated>
+  <link href="https://www.1101.com/" rel="alternate" type="text/html"/>
+  <id>https://adtheriault.github.io/itoi-daily/feed.xml</id>
   <link href="https://adtheriault.github.io/itoi-daily/feed.xml" rel="self" type="application/atom+xml"/>
-  <generator version="0.4.0">python-feedgen</generator>
   <icon>https://adtheriault.github.io/itoi-daily/hobonichi%20logo.png</icon>
-  <subtitle>Daily essays by Shigesato Itoi from 1101.com, translated to English</subtitle>
-  <entry>
+<entry>
     <id>https://adtheriault.github.io/itoi-daily/#69dfd87c0a68</id>
     <title>While Eating Sandwiches in the Middle of the Night.</title>
     <updated>2026-01-29T05:29:29.027419+00:00</updated>
