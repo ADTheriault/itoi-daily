@@ -12,6 +12,7 @@ import json
 import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
@@ -27,7 +28,7 @@ ARCHIVE_FILE = OUTPUT_DIR / "archive.json"
 DARLING_IMAGE_URL = "https://www.1101.com/home/2025/images/home/darling.png"
 
 
-def scrape_essay() -> dict | None:
+def scrape_essay() -> Optional[dict]:
     """Fetch and extract Itoi's daily essay from 1101.com using Playwright."""
 
     with sync_playwright() as p:
