@@ -186,30 +186,31 @@ def save_archive(archive: list):
         json.dump(archive, f, ensure_ascii=False, indent=2)
 
 
-def generate_rss(archive: list):
-    """Generate RSS feed from archive."""
+def generate_atom(archive: list):
+    """Generate Atom feed from archive."""
     fg = FeedGenerator()
     fg.id('https://adtheriault.github.io/itoi-daily/')
     fg.title("Itoi's Daily Essay (Translated)")
-    fg.author({'name': 'Shigesato Itoi', 'email': 'translated@example.com'})
-    fg.link(href='https://adtheriault.github.io/itoi-daily/', rel='alternate')
-    fg.link(href='https://adtheriault.github.io/itoi-daily/feed.xml', rel='self')
     fg.subtitle('Daily essays by Shigesato Itoi from 1101.com, translated to English')
-    fg.language('en')
-    fg.image(url=DARLING_IMAGE_URL, title="Itoi's Daily Essay", link='https://www.1101.com/')
+    fg.author({'name': 'Shigesato Itoi', 'email': 'translated@example.com'})
+    fg.link(href='https://adtheriault.github.io/itoi-daily/', rel='alternate', type='text/html')
+    fg.link(href='https://adtheriault.github.io/itoi-daily/feed.xml', rel='self', type='application/atom+xml')
+    fg.language('en-US')
+    fg.icon(HOBONICHI_ICON_URL)
 
     # Add entries (most recent first, limit to 30)
     for entry_data in archive[:30]:
         fe = fg.add_entry()
         fe.id(f"https://adtheriault.github.io/itoi-daily/#{entry_data['hash']}")
         fe.title(entry_data.get('translated_title', entry_data['title']))
-        fe.link(href='https://www.1101.com/')
+        fe.author({'name': entry_data.get('translated_author', entry_data.get('author', 'Shigesato Itoi'))})
+        fe.link(href='https://www.1101.com/', rel='alternate', type='text/html')
 
         # Use summary for description (1-2 line summary)
         summary = entry_data.get('summary', '')
-        fe.description(summary)
+        fe.summary(summary)
 
-        # Add full translation as content:encoded
+        # Add full translation as content
         translation = entry_data['translation']
         fe.content(content=translation, type='html')
 
@@ -217,55 +218,9 @@ def generate_rss(archive: list):
         fe.updated(entry_data['date'])
 
     OUTPUT_DIR.mkdir(exist_ok=True)
-    fg.rss_file(str(FEED_FILE), pretty=True)
+    fg.atom_file(str(FEED_FILE), pretty=True)
 
-    # Post-process XML to add namespaces, dc:author, dc:publisher, and media:thumbnail
-    with open(FEED_FILE, 'r', encoding='utf-8') as f:
-        xml_content = f.read()
-
-    # Add namespaces to the root rss element
-    if 'xmlns:dc=' not in xml_content:
-        xml_content = xml_content.replace(
-            '<rss',
-            '<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"',
-            1
-        )
-
-    # Add dc:publisher after the language tag if not present
-    if '<dc:publisher>' not in xml_content:
-        xml_content = xml_content.replace(
-            '</language>',
-            '</language>\n    <dc:publisher>Hobonichi</dc:publisher>'
-        )
-
-    # Add icon after dc:publisher if not present (using Hobonichi logo PNG for RSS reader compatibility)
-    if '<icon>' not in xml_content:
-        xml_content = xml_content.replace(
-            '</dc:publisher>',
-            f'</dc:publisher>\n    <icon>{HOBONICHI_ICON_URL}</icon>',
-            1
-        )
-
-    # Add dc:author and media:thumbnail to each item
-    import re
-    for entry_data in archive[:30]:
-        author = entry_data.get('translated_author', entry_data.get('author', 'Shigesato Itoi'))
-        author_tag = f'<dc:author>{author}</dc:author>'
-        thumbnail_tag = f'<media:thumbnail url="{DARLING_IMAGE_URL}" width="200" height="200"/>'
-
-        # Find the item for this entry and add author/thumbnail after guid
-        guid = entry_data['hash']
-        pattern = f'<guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#{guid}</guid>'
-        if pattern in xml_content:
-            replacement = f'{pattern}\n    {author_tag}\n    {thumbnail_tag}'
-            xml_content = xml_content.replace(pattern, replacement, 1)
-
-    # Write final XML (after all processing: namespaces and metadata)
-    # feedgen already outputs items in correct order (newest first)
-    with open(FEED_FILE, 'w', encoding='utf-8') as f:
-        f.write(xml_content)
-
-    print(f"RSS feed written to {FEED_FILE}")
+    print(f"Atom feed written to {FEED_FILE}")
 
 
 def main():
@@ -307,7 +262,7 @@ def main():
 
     # Save and regenerate feed
     save_archive(archive)
-    generate_rss(archive)
+    generate_atom(archive)
 
     print(f"Successfully processed: {essay['title']}")
     print(f"Translated title: {translated_title}")
