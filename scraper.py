@@ -253,6 +253,28 @@ def generate_rss(archive: list):
     with open(FEED_FILE, 'w', encoding='utf-8') as f:
         f.write(xml_content)
 
+    # Reorder items to ensure newest appears first (critical for RSS reader compatibility)
+    # Many RSS readers only check if feed lastBuildDate changed; items below top won't be fetched
+    import re
+    match = re.search(r'(.*?)((?:<item>.*?</item>))(.*?)(</channel>.*)', xml_content, re.DOTALL)
+    if match:
+        before_items = match.group(1)
+        items_section = match.group(2)
+        between = match.group(3)
+        after = match.group(4)
+
+        # Extract all items
+        items = re.findall(r'<item>.*?</item>', items_section, re.DOTALL)
+
+        # Archive is in chronological order (newest first), so reverse items to match
+        items_reversed = list(reversed(items))
+
+        # Rebuild XML with reversed items
+        xml_content = before_items + ''.join(items_reversed) + between + after
+
+        with open(FEED_FILE, 'w', encoding='utf-8') as f:
+            f.write(xml_content)
+
     print(f"RSS feed written to {FEED_FILE}")
 
 
