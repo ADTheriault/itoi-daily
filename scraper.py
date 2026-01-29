@@ -237,6 +237,14 @@ def generate_rss(archive: list):
             '</language>\n    <dc:publisher>Hobonichi</dc:publisher>'
         )
 
+    # Add icon after dc:publisher if not present
+    if '<icon>' not in xml_content:
+        xml_content = xml_content.replace(
+            '</dc:publisher>',
+            '</dc:publisher>\n    <icon>https://www.1101.com/favicon.ico</icon>',
+            1
+        )
+
     # Add dc:author and media:thumbnail to each item
     import re
     for entry_data in archive[:30]:
