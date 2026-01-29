@@ -189,13 +189,12 @@ def save_archive(archive: list):
 def generate_atom(archive: list):
     """Generate Atom feed from archive."""
     fg = FeedGenerator()
-    fg.id('https://adtheriault.github.io/itoi-daily/')
-    fg.title("Itoi's Daily Essay (Translated)")
-    fg.subtitle('Daily essays by Shigesato Itoi from 1101.com, translated to English')
-    fg.author({'name': 'Shigesato Itoi', 'email': 'translated@example.com'})
-    fg.link(href='https://adtheriault.github.io/itoi-daily/', rel='alternate', type='text/html')
+    fg.id('https://adtheriault.github.io/itoi-daily/feed.xml')
+    fg.title("Today's Darling")
+    fg.subtitle('Daily essays by Shigesato Itoi from 1101.com, translated to English.')
+    fg.link(href='https://www.1101.com/', rel='alternate', type='text/html')
     fg.link(href='https://adtheriault.github.io/itoi-daily/feed.xml', rel='self', type='application/atom+xml')
-    fg.language('en-US')
+    fg.language('en')
     fg.icon(HOBONICHI_ICON_URL)
 
     # Add entries (most recent first, limit to 30)
@@ -220,7 +219,68 @@ def generate_atom(archive: list):
     OUTPUT_DIR.mkdir(exist_ok=True)
     fg.atom_file(str(FEED_FILE), pretty=True)
 
-    print(f"Atom feed written to {FEED_FILE}")
+    # Post-process to match the desired header format
+    with open(FEED_FILE, 'r', encoding='utf-8') as f:
+        xml_content = f.read()
+
+    # Add thr namespace if not present
+    if 'xmlns:thr=' not in xml_content:
+        xml_content = xml_content.replace(
+            '<feed xmlns="http://www.w3.org/2005/Atom"',
+            '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0"',
+            1
+        )
+
+    # Add type="text" to title element
+    if '<title type=' not in xml_content:
+        xml_content = xml_content.replace(
+            '<title>',
+            '<title type="text">',
+            1
+        )
+
+    # Reorder feed header elements to match convention:
+    # title, subtitle, updated, link(alternate), id, link(self), icon
+    import re
+    feed_match = re.search(r'<feed[^>]*>.*?(?=<entry|</feed>)', xml_content, re.DOTALL)
+    if feed_match:
+        feed_section = feed_match.group(0)
+
+        # Extract individual elements
+        title_match = re.search(r'(<title[^>]*>.*?</title>)', feed_section)
+        subtitle_match = re.search(r'(<subtitle>.*?</subtitle>)', feed_section)
+        updated_match = re.search(r'(<updated>.*?</updated>)', feed_section)
+        links = re.findall(r'(<link[^>]*/?>)', feed_section)
+        id_match = re.search(r'(<id>.*?</id>)', feed_section)
+        icon_match = re.search(r'(<icon>.*?</icon>)', feed_section)
+        generator_match = re.search(r'(<generator[^>]*>.*?</generator>)', feed_section)
+
+        # Reconstruct in desired order
+        new_feed = '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en">\n'
+        if title_match:
+            new_feed += '  ' + title_match.group(1) + '\n'
+        if subtitle_match:
+            new_feed += '  ' + subtitle_match.group(1) + '\n'
+        if updated_match:
+            new_feed += '  ' + updated_match.group(1) + '\n'
+        # Add links in order: alternate first, then self
+        for link in links:
+            if 'rel="alternate"' in link:
+                new_feed += '  ' + link + '\n'
+        if id_match:
+            new_feed += '  ' + id_match.group(1) + '\n'
+        for link in links:
+            if 'rel="self"' in link:
+                new_feed += '  ' + link + '\n'
+        if icon_match:
+            new_feed += '  ' + icon_match.group(1) + '\n'
+
+        # Replace the feed opening with our reconstructed one
+        xml_content = new_feed + xml_content[feed_match.end():]
+
+    # Write final XML
+    with open(FEED_FILE, 'w', encoding='utf-8') as f:
+        f.write(xml_content)
 
 
 def main():
