@@ -209,9 +209,12 @@ def generate_atom(archive: list):
         summary = entry_data.get('summary', '')
         fe.summary(summary)
 
-        # Add full translation as content
+        # Add full translation as content with centered header image
         translation = entry_data['translation']
-        fe.content(content=translation, type='html')
+        # Prepend a centered image at the top of the content
+        image_html = f'<div style="text-align: center; margin-bottom: 20px;"><img src="{DARLING_IMAGE_URL}" alt="Hobonichi Darling" style="max-width: 300px; height: auto;"/></div>'
+        content_with_image = image_html + translation
+        fe.content(content=content_with_image, type='html')
 
         fe.published(entry_data['date'])
         fe.updated(entry_data['date'])
