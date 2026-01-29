@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
   <channel>
     <title>Itoi's Daily Essay (Translated)</title>
     <link>https://adtheriault.github.io/itoi-daily/feed.xml</link>
@@ -13,17 +13,37 @@
       <link>https://www.1101.com/</link>
     </image>
     <language>en</language>
-    <lastBuildDate>Wed, 28 Jan 2026 10:43:57 +0000</lastBuildDate>
+    <dc:publisher>Hobonichi</dc:publisher>
+    <lastBuildDate>Thu, 29 Jan 2026 05:29:47 +0000</lastBuildDate>
     <item>
-      <title>Things generally don't go that way.</title>
+      <title>Well, that's not how things usually work out.</title>
       <link>https://www.1101.com/</link>
-      <description>&lt;img src="https://www.1101.com/home/2025/images/home/darling.png" alt="Itoi signature" style="max-width: 100px; margin-bottom: 1em;" /&gt;&lt;br/&gt;&lt;strong&gt;Shigesato Itoi&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;・The other day, for our ongoing "aging and death" series at Hobo Nikkan Itoi Shinbun, I had a conversation with Nurse Asami, who just published a book called *Let's Think About How to End Our Lives*, and with Hatano Hiroshi. I'll leave the full content for when it's published on our site, but something that Asami—a working nurse—said so casually has really stuck with me. "When people die, it's not really like in movies or TV shows, you know—lying peacefully in bed surrounded by family, quietly slipping away." Coming from a nurse who has witnessed this countless times, her words carry real weight.
+      <description>Our expectations of how life should look often come from movies and television rather than reality—real life is messy, imperfect, and full of cracks and patches, and that's entirely natural.</description>
+      <content:encoded>The other day, as part of the ongoing series on aging and death that we run irregularly at Hobonichi, I had a conversation with Nurse Asami, who just published a book called *Let's Think About How to End Our Lives*, and with Hatano Hiroshi. I'll leave the details for when the piece eventually appears on Hobonichi, but something Asami said so casually—she's a working nurse—really stuck with me. "When people die, you know, it's not really like in movies or TV shows—lying peacefully in bed surrounded by family, quietly passing away." Coming from a nurse who's witnessed this scene countless times, her words carry real weight.
 
-The conversation continued from there, but it's so true—those familiar scenes we think we know are just memories from things we've seen before. What we generally imagine "must be how it goes" is mostly what we've absorbed from movies and television. When I was a kid, American family sitcoms were popular, and I loved watching them. But I absolutely hated it when some drunk old man would stumble up to the TV screen and slur, "Families like that don't exist anywhere! It's all lies!" Later, as an adult, I heard Yoshimoto Takaaki say essentially the same thing over and over: "Problem-free families don't exist anywhere." Now that I'm grown up, I get it. Every person has a past, present, and future—vertical, horizontal, diagonal dimensions, things near and far. The ways people connect to each other are equally complex. Something perfectly round and smoothly happy is just pie in the sky. A "picture-perfect family"—we can't help but imagine such a thing, but of course nothing like that exists in reality. It's all scars, cracks, breaks, worn spots, patches. That's just how it is, and we carry on naturally with all of that. Though of course we still enjoy our dramas as dramas.
+The conversation continued from there, but yes, exactly—those "familiar scenes" get lodged in our memory as things we think we've seen before. What we generally imagine "should" happen is largely based on what we've absorbed from movies and television as staged drama.
 
-Thank you for coming to Hobo Nikkan today. There are also healthy days spent complaining about this ache and that itch.</description>
+When I was a kid, American family sitcoms were popular, and I used to enjoy watching them. But I really hated it when some drunk old man would start yelling at the TV screen: "Families like that don't exist! It's all lies!" Later, as an adult, I heard almost identical words from Yoshimoto Takaaki many times. He'd declare with absolute certainty: "Families without any problems don't exist anywhere."
+
+Now that I'm grown up, of course I understand this. Every single person has a past, present, and future—vertical, horizontal, diagonal dimensions, things near and far. The ways people connect to each other are endlessly varied. Something perfectly round and smoothly happy? That's just a picture of rice cake you can't eat. We tend to imagine "picture-perfect families," but naturally, no such thing exists in reality. Scratches, cracks, breaks, worn spots, patches—everything's full of these things. And it's natural to just keep going with all of that as it is.
+
+Of course, we still enjoy dramas as dramas.
+
+Thank you for visiting Hobonichi again today. There are also healthy days spent complaining about aches and itches.</content:encoded>
       <guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#e1280565fffa</guid>
-      <pubDate>Wed, 28 Jan 2026 10:43:41 +0000</pubDate>
+    <dc:author>Shigesato Itoi</dc:author>
+    <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
+      <pubDate>Wed, 28 Jan 2026 10:54:58 +0000</pubDate>
+    </item>
+    <item>
+      <title>While Eating Sandwiches in the Middle of the Night.</title>
+      <link>https://www.1101.com/</link>
+      <description>The essay argues that famous historical legends, regardless of their truth, function as memorable "single posters" that effectively capture and transmit key ideas across generations. These condensed stories persist because they work as powerful, visual narratives that stick in our collective memory.</description>
+      <content:encoded>・According to legend, the sandwich was created when the Earl of Sandwich wanted to eat while playing cards, so he had something put between bread so he could eat it with one hand. But that's probably bullshit. I haven't looked it up, but these kinds of stories are usually made up, aren't they? Even without dragging earls and dukes into it, I'm sure people were putting stuff between bread long before that. But if the sandwich didn't come from someone's name, then how did it get that name? I don't know. I have no idea. I didn't do anything—it just naturally ended up that way. We probably don't understand the etymology of most nouns anyway. But almost everyone in the world who knows what a sandwich is also knows the story of the "Duke of Sandwich" and thinks, well, that must be where it comes from. Same with Archimedes' principle—supposedly he shouted "Eureka!" while taking a bath and ran out naked, but I doubt that ever happened. Then again, it's not like he came back to deny it, so people all over the world just went ahead and stripped Archimedes naked. And "Newton's apple," too. I think that legend has grown so rich with tributaries that they even talk about what variety of apple it was that fell. It's too late to ask Newton "Is that really what happened?" But people everywhere think "Newton equals apple." There's also "Columbus's egg," and in Japan we have "Mōri Motonari's three arrows" and "Kinoshita Tōkichirō's sandals" (which became brilliant material in *The Toyotomi Brothers!*). I've been rattling off examples as they come to mind, but with all these stories, it doesn't matter whether they're true or false—they're legends that "that's how it happened." They must be "masterpieces" that keep getting passed down through the generations. And here's what I've realized: every one of these legends works as "a single poster." Thank you for coming to "Hobo Nikkan" again today. Legends are "stories," but they're also single posters.</content:encoded>
+      <guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#69dfd87c0a68</guid>
+    <dc:author>Shigesato Itoi</dc:author>
+    <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
+      <pubDate>Thu, 29 Jan 2026 05:29:29 +0000</pubDate>
     </item>
   </channel>
 </rss>

@@ -148,6 +148,28 @@ If there is a phrase or idiom that doesn't translate easily, include a minimal f
     return message.content[0].text
 
 
+def summarize_translation(translation: str) -> str:
+    """Generate a 1-2 line summary from the translated essay."""
+    api_key = os.environ.get('ANTHROPIC_API_KEY')
+    if not api_key:
+        raise ValueError("ANTHROPIC_API_KEY environment variable not set")
+
+    client = Anthropic(api_key=api_key)
+
+    prompt = f"""Create a brief 1-2 sentence summary of this essay that captures its main theme or insight.
+Be concise and natural. Output only the summary, nothing else.
+
+{translation}"""
+
+    message = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=200,
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    return message.content[0].text.strip()
+
+
 def load_archive() -> list:
     """Load existing archive of essays."""
     if ARCHIVE_FILE.exists():
@@ -182,17 +204,56 @@ def generate_rss(archive: list):
         fe.title(entry_data.get('translated_title', entry_data['title']))
         fe.link(href='https://www.1101.com/')
 
-        # Build description with image and author
-        author = entry_data.get('translated_author', entry_data.get('author', 'Shigesato Itoi'))
-        translation = entry_data['translation']
-        description = f'<img src="{DARLING_IMAGE_URL}" alt="Itoi signature" style="max-width: 100px; margin-bottom: 1em;" /><br/><strong>{author}</strong><br/><br/>{translation}'
+        # Use summary for description (1-2 line summary)
+        summary = entry_data.get('summary', '')
+        fe.description(summary)
 
-        fe.description(description)
+        # Add full translation as content:encoded
+        translation = entry_data['translation']
+        fe.content(content=translation, type='html')
+
         fe.published(entry_data['date'])
         fe.updated(entry_data['date'])
 
     OUTPUT_DIR.mkdir(exist_ok=True)
     fg.rss_file(str(FEED_FILE), pretty=True)
+
+    # Post-process XML to add namespaces, dc:author, dc:publisher, and media:thumbnail
+    with open(FEED_FILE, 'r', encoding='utf-8') as f:
+        xml_content = f.read()
+
+    # Add namespaces to the root rss element
+    if 'xmlns:dc=' not in xml_content:
+        xml_content = xml_content.replace(
+            '<rss',
+            '<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"',
+            1
+        )
+
+    # Add dc:publisher after the language tag if not present
+    if '<dc:publisher>' not in xml_content:
+        xml_content = xml_content.replace(
+            '</language>',
+            '</language>\n    <dc:publisher>Hobonichi</dc:publisher>'
+        )
+
+    # Add dc:author and media:thumbnail to each item
+    import re
+    for entry_data in archive[:30]:
+        author = entry_data.get('translated_author', entry_data.get('author', 'Shigesato Itoi'))
+        author_tag = f'<dc:author>{author}</dc:author>'
+        thumbnail_tag = f'<media:thumbnail url="{DARLING_IMAGE_URL}" width="200" height="200"/>'
+
+        # Find the item for this entry and add author/thumbnail after guid
+        guid = entry_data['hash']
+        pattern = f'<guid isPermaLink="false">https://adtheriault.github.io/itoi-daily/#{guid}</guid>'
+        if pattern in xml_content:
+            replacement = f'{pattern}\n    {author_tag}\n    {thumbnail_tag}'
+            xml_content = xml_content.replace(pattern, replacement, 1)
+
+    with open(FEED_FILE, 'w', encoding='utf-8') as f:
+        f.write(xml_content)
+
     print(f"RSS feed written to {FEED_FILE}")
 
 
@@ -223,8 +284,12 @@ def main():
     print("Translating essay...")
     translation = translate_text(essay['body'])
 
+    print("Generating summary...")
+    summary = summarize_translation(translation)
+
     # Add to archive
     essay['translation'] = translation
+    essay['summary'] = summary
     essay['translated_title'] = translated_title
     essay['translated_author'] = translated_author
     archive.insert(0, essay)  # Most recent first
@@ -235,6 +300,7 @@ def main():
 
     print(f"Successfully processed: {essay['title']}")
     print(f"Translated title: {translated_title}")
+    print(f"Summary: {summary}")
 
 
 if __name__ == "__main__":
