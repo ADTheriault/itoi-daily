@@ -26,6 +26,7 @@ OUTPUT_DIR = Path(__file__).parent / "docs"
 FEED_FILE = OUTPUT_DIR / "feed.xml"
 ARCHIVE_FILE = OUTPUT_DIR / "archive.json"
 DARLING_IMAGE_URL = "https://www.1101.com/home/2025/images/home/darling.png"
+HOBONICHI_ICON_URL = "https://adtheriault.github.io/itoi-daily/hobonichi%20logo.png"
 
 
 def scrape_essay() -> Optional[dict]:
@@ -237,11 +238,11 @@ def generate_rss(archive: list):
             '</language>\n    <dc:publisher>Hobonichi</dc:publisher>'
         )
 
-    # Add icon after dc:publisher if not present
+    # Add icon after dc:publisher if not present (using Hobonichi logo PNG for RSS reader compatibility)
     if '<icon>' not in xml_content:
         xml_content = xml_content.replace(
             '</dc:publisher>',
-            '</dc:publisher>\n    <icon>https://www.1101.com/favicon.ico</icon>',
+            f'</dc:publisher>\n    <icon>{HOBONICHI_ICON_URL}</icon>',
             1
         )
 
