@@ -1,12 +1,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en">
   <title type="text">Today's Darling</title>
   <subtitle>Daily essays by Shigesato Itoi from 1101.com, translated to English.</subtitle>
-  <updated>2026-01-29T14:01:46.069103+00:00</updated>
+  <updated>2026-01-30T11:36:50.921700+00:00</updated>
   <link href="https://www.1101.com/" rel="alternate" type="text/html"/>
   <id>https://adtheriault.github.io/itoi-daily/feed.xml</id>
   <link href="https://adtheriault.github.io/itoi-daily/feed.xml" rel="self" type="application/atom+xml"/>
   <icon>https://adtheriault.github.io/itoi-daily/hobonichi%20logo.png</icon>
 <entry>
+    <id>https://adtheriault.github.io/itoi-daily/#5077004e92a1</id>
+    <title>About "Something Better."</title>
+    <updated>2026-01-30T05:36:48.894722+00:00</updated>
+    <author>
+      <name>Shigesato Itoi</name>
+    </author>
+    <content type="html">&lt;div style="text-align: center; margin-bottom: 20px;"&gt;&lt;img src="https://www.1101.com/home/2025/images/home/darling.png" alt="Hobonichi Darling" style="max-width: 300px; height: auto;"/&gt;&lt;/div&gt;・Everyone probably has moments when they think there's "something better" than whatever "something" is right here, right now. There's a strawberry in front of you. It's beautiful, fresh, looks delicious. You try it. It's good. You have another bite. "Delicious." Then you—or someone else there—starts thinking. This strawberry is good, but "couldn't there be an even more delicious strawberry out there?" or "I've had better strawberries before." That's not wrong, exactly. If this were happening at "a gathering of strawberry-researching farmers," those would be the thoughts of ambitious, driven people—the kind of scene that deserves praise. But if this is just an ordinary family at home, and someone goes out of their way to announce "there are more delicious strawberries out there," well, that becomes a pretty annoying thing to say. Sure, for everything—every object, person, situation—there probably is "something better." Of course there is. Even if it doesn't exist now, eventually, somewhere, "something better" might appear. But there are times when it's fine to think that way, and times when you absolutely shouldn't think or say such things. "Ms. A, I love you. There might be someone better than you out there, but you're the best choice I can make right now"—that's probably not how you should propose. The idea of "something better," that kind of imagination—there are times when it's okay, and times when you absolutely must not go there. In stories and legends, "great figures and artists" will look at good results and still cry out "This isn't good enough!!" in dissatisfaction, but that's their thing. We're not Kaibara Yuzan and Yamaoka Shiro, after all. I think people who keep their feet on the ground, who think and act practically, know how to choose when to think about "something better" and when not to, depending on the time and circumstances. Thank you for visiting "Hobo Nikkan" again today. Chef Doi Yoshiharu's "as long as it's not bad, it's good" really is a golden rule.</content>
+    <link href="https://www.1101.com/" rel="alternate" type="text/html"/>
+    <summary>The essay argues that while there's always "something better" out there, wisdom lies in knowing when to embrace this mindset for improvement and when to appreciate what's right in front of you. Practical people understand that constantly seeking "something better" can undermine contentment and relationships, making "as long as it's not bad, it's good" a valuable life philosophy.</summary>
+    <published>2026-01-30T05:36:48.894722+00:00</published>
+  <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
+  </entry>
+  <entry>
     <id>https://adtheriault.github.io/itoi-daily/#69dfd87c0a68</id>
     <title>While Eating Sandwiches in the Middle of the Night.</title>
     <updated>2026-01-29T05:29:29.027419+00:00</updated>
