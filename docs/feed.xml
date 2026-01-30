@@ -1,19 +1,32 @@
-<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en">
   <title type="text">Today's Darling</title>
   <subtitle>Daily essays by Shigesato Itoi from 1101.com, translated to English.</subtitle>
-  <updated>2026-01-30T05:37:10.696523+00:00</updated>
+  <updated>2026-01-29T14:01:46.069103+00:00</updated>
   <link href="https://www.1101.com/" rel="alternate" type="text/html"/>
   <id>https://adtheriault.github.io/itoi-daily/feed.xml</id>
   <link href="https://adtheriault.github.io/itoi-daily/feed.xml" rel="self" type="application/atom+xml"/>
   <icon>https://adtheriault.github.io/itoi-daily/hobonichi%20logo.png</icon>
 <entry>
+    <id>https://adtheriault.github.io/itoi-daily/#69dfd87c0a68</id>
+    <title>While Eating Sandwiches in the Middle of the Night.</title>
+    <updated>2026-01-29T05:29:29.027419+00:00</updated>
+    <author>
+      <name>Shigesato Itoi</name>
+    </author>
+    <content type="html">&lt;div style="text-align: center; margin-bottom: 20px;"&gt;&lt;img src="https://www.1101.com/home/2025/images/home/darling.png" alt="Hobonichi Darling" style="max-width: 300px; height: auto;"/&gt;&lt;/div&gt;・According to legend, the sandwich was created when the Earl of Sandwich wanted to eat while playing cards, so he had something put between bread so he could eat it with one hand. But that's probably bullshit. I haven't looked it up, but these kinds of stories are usually made up, aren't they? Even without dragging earls and dukes into it, I'm sure people were putting stuff between bread long before that. But if the sandwich didn't come from someone's name, then how did it get that name? I don't know. I have no idea. I didn't do anything—it just naturally ended up that way. We probably don't understand the etymology of most nouns anyway. But almost everyone in the world who knows what a sandwich is also knows the story of the "Duke of Sandwich" and thinks, well, that must be where it comes from. Same with Archimedes' principle—supposedly he shouted "Eureka!" while taking a bath and ran out naked, but I doubt that ever happened. Then again, it's not like he came back to deny it, so people all over the world just went ahead and stripped Archimedes naked. And "Newton's apple," too. I think that legend has grown so rich with tributaries that they even talk about what variety of apple it was that fell. It's too late to ask Newton "Is that really what happened?" But people everywhere think "Newton equals apple." There's also "Columbus's egg," and in Japan we have "Mōri Motonari's three arrows" and "Kinoshita Tōkichirō's sandals" (which became brilliant material in *The Toyotomi Brothers!*). I've been rattling off examples as they come to mind, but with all these stories, it doesn't matter whether they're true or false—they're legends that "that's how it happened." They must be "masterpieces" that keep getting passed down through the generations. And here's what I've realized: every one of these legends works as "a single poster." Thank you for coming to "Hobo Nikkan" again today. Legends are "stories," but they're also single posters.</content>
+    <link href="https://www.1101.com/" rel="alternate" type="text/html"/>
+    <summary>The essay argues that famous historical legends, regardless of their truth, function as memorable "single posters" that effectively capture and transmit key ideas across generations. These condensed stories persist because they work as powerful, visual narratives that stick in our collective memory.</summary>
+    <published>2026-01-29T05:29:29.027419+00:00</published>
+  <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
+  </entry>
+  <entry>
     <id>https://adtheriault.github.io/itoi-daily/#e1280565fffa</id>
     <title>Well, that's not how things usually work out.</title>
     <updated>2026-01-28T10:54:58.384017+00:00</updated>
     <author>
       <name>Shigesato Itoi</name>
     </author>
-    <content type="html">The other day, as part of the ongoing series on aging and death that we run irregularly at Hobonichi, I had a conversation with Nurse Asami, who just published a book called *Let's Think About How to End Our Lives*, and with Hatano Hiroshi. I'll leave the details for when the piece eventually appears on Hobonichi, but something Asami said so casually—she's a working nurse—really stuck with me. "When people die, you know, it's not really like in movies or TV shows—lying peacefully in bed surrounded by family, quietly passing away." Coming from a nurse who's witnessed this scene countless times, her words carry real weight.
+    <content type="html">&lt;div style="text-align: center; margin-bottom: 20px;"&gt;&lt;img src="https://www.1101.com/home/2025/images/home/darling.png" alt="Hobonichi Darling" style="max-width: 300px; height: auto;"/&gt;&lt;/div&gt;The other day, as part of the ongoing series on aging and death that we run irregularly at Hobonichi, I had a conversation with Nurse Asami, who just published a book called *Let's Think About How to End Our Lives*, and with Hatano Hiroshi. I'll leave the details for when the piece eventually appears on Hobonichi, but something Asami said so casually—she's a working nurse—really stuck with me. "When people die, you know, it's not really like in movies or TV shows—lying peacefully in bed surrounded by family, quietly passing away." Coming from a nurse who's witnessed this scene countless times, her words carry real weight.
 
 The conversation continued from there, but yes, exactly—those "familiar scenes" get lodged in our memory as things we think we've seen before. What we generally imagine "should" happen is largely based on what we've absorbed from movies and television as staged drama.
 
@@ -24,32 +37,9 @@ Now that I'm grown up, of course I understand this. Every single person has a pa
 Of course, we still enjoy dramas as dramas.
 
 Thank you for visiting Hobonichi again today. There are also healthy days spent complaining about aches and itches.</content>
-    <link href="https://www.1101.com/"/>
+    <link href="https://www.1101.com/" rel="alternate" type="text/html"/>
     <summary>Our expectations of how life should look often come from movies and television rather than reality—real life is messy, imperfect, and full of cracks and patches, and that's entirely natural.</summary>
     <published>2026-01-28T10:54:58.384017+00:00</published>
-  </entry>
-  <entry>
-    <id>https://adtheriault.github.io/itoi-daily/#69dfd87c0a68</id>
-    <title>While Eating Sandwiches in the Middle of the Night.</title>
-    <updated>2026-01-29T05:29:29.027419+00:00</updated>
-    <author>
-      <name>Shigesato Itoi</name>
-    </author>
-    <content type="html">・According to legend, the sandwich was created when the Earl of Sandwich wanted to eat while playing cards, so he had something put between bread so he could eat it with one hand. But that's probably bullshit. I haven't looked it up, but these kinds of stories are usually made up, aren't they? Even without dragging earls and dukes into it, I'm sure people were putting stuff between bread long before that. But if the sandwich didn't come from someone's name, then how did it get that name? I don't know. I have no idea. I didn't do anything—it just naturally ended up that way. We probably don't understand the etymology of most nouns anyway. But almost everyone in the world who knows what a sandwich is also knows the story of the "Duke of Sandwich" and thinks, well, that must be where it comes from. Same with Archimedes' principle—supposedly he shouted "Eureka!" while taking a bath and ran out naked, but I doubt that ever happened. Then again, it's not like he came back to deny it, so people all over the world just went ahead and stripped Archimedes naked. And "Newton's apple," too. I think that legend has grown so rich with tributaries that they even talk about what variety of apple it was that fell. It's too late to ask Newton "Is that really what happened?" But people everywhere think "Newton equals apple." There's also "Columbus's egg," and in Japan we have "Mōri Motonari's three arrows" and "Kinoshita Tōkichirō's sandals" (which became brilliant material in *The Toyotomi Brothers!*). I've been rattling off examples as they come to mind, but with all these stories, it doesn't matter whether they're true or false—they're legends that "that's how it happened." They must be "masterpieces" that keep getting passed down through the generations. And here's what I've realized: every one of these legends works as "a single poster." Thank you for coming to "Hobo Nikkan" again today. Legends are "stories," but they're also single posters.</content>
-    <link href="https://www.1101.com/"/>
-    <summary>The essay argues that famous historical legends, regardless of their truth, function as memorable "single posters" that effectively capture and transmit key ideas across generations. These condensed stories persist because they work as powerful, visual narratives that stick in our collective memory.</summary>
-    <published>2026-01-29T05:29:29.027419+00:00</published>
-  </entry>
-  <entry>
-    <id>https://adtheriault.github.io/itoi-daily/#5077004e92a1</id>
-    <title>About "Something Better."</title>
-    <updated>2026-01-30T05:36:48.894722+00:00</updated>
-    <author>
-      <name>Shigesato Itoi</name>
-    </author>
-    <content type="html">・Everyone probably has moments when they think there's "something better" than whatever "something" is right here, right now. There's a strawberry in front of you. It's beautiful, fresh, looks delicious. You try it. It's good. You have another bite. "Delicious." Then you—or someone else there—starts thinking. This strawberry is good, but "couldn't there be an even more delicious strawberry out there?" or "I've had better strawberries before." That's not wrong, exactly. If this were happening at "a gathering of strawberry-researching farmers," those would be the thoughts of ambitious, driven people—the kind of scene that deserves praise. But if this is just an ordinary family at home, and someone goes out of their way to announce "there are more delicious strawberries out there," well, that becomes a pretty annoying thing to say. Sure, for everything—every object, person, situation—there probably is "something better." Of course there is. Even if it doesn't exist now, eventually, somewhere, "something better" might appear. But there are times when it's fine to think that way, and times when you absolutely shouldn't think or say such things. "Ms. A, I love you. There might be someone better than you out there, but you're the best choice I can make right now"—that's probably not how you should propose. The idea of "something better," that kind of imagination—there are times when it's okay, and times when you absolutely must not go there. In stories and legends, "great figures and artists" will look at good results and still cry out "This isn't good enough!!" in dissatisfaction, but that's their thing. We're not Kaibara Yuzan and Yamaoka Shiro, after all. I think people who keep their feet on the ground, who think and act practically, know how to choose when to think about "something better" and when not to, depending on the time and circumstances. Thank you for visiting "Hobo Nikkan" again today. Chef Doi Yoshiharu's "as long as it's not bad, it's good" really is a golden rule.</content>
-    <link href="https://www.1101.com/"/>
-    <summary>The essay argues that while there's always "something better" out there, wisdom lies in knowing when to embrace this mindset for improvement and when to appreciate what's right in front of you. Practical people understand that constantly seeking "something better" can undermine contentment and relationships, making "as long as it's not bad, it's good" a valuable life philosophy.</summary>
-    <published>2026-01-30T05:36:48.894722+00:00</published>
+  <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
   </entry>
 </feed>

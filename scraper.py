@@ -134,8 +134,13 @@ Output only the translated title, nothing else.
         prompt = f"""You are translating a Japanese personal essay into natural, literary English.
 Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
 Do not include boilerplate like 'Here is the translation.' Do not explain your output.
-Preserve paragraph breaks (two line breaks = new paragraph).
-Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone.
+
+CRITICAL: Preserve all paragraph structure and line breaks from the original text.
+- Maintain each paragraph as a separate block
+- Use double line breaks to separate paragraphs (blank line between paragraphs)
+- This preserves readability—do NOT output as one continuous block
+- Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone
+
 If there is a phrase or idiom that doesn't translate easily, include a minimal footnote only if necessary.
 
 {japanese_text}"""
@@ -209,9 +214,12 @@ def generate_atom(archive: list):
         summary = entry_data.get('summary', '')
         fe.summary(summary)
 
-        # Add full translation as content
+        # Add full translation as content with centered header image
         translation = entry_data['translation']
-        fe.content(content=translation, type='html')
+        # Prepend a centered image at the top of the content
+        image_html = f'<div style="text-align: center; margin-bottom: 20px;"><img src="{DARLING_IMAGE_URL}" alt="Hobonichi Darling" style="max-width: 300px; height: auto;"/></div>'
+        content_with_image = image_html + translation
+        fe.content(content=content_with_image, type='html')
 
         fe.published(entry_data['date'])
         fe.updated(entry_data['date'])
@@ -223,8 +231,14 @@ def generate_atom(archive: list):
     with open(FEED_FILE, 'r', encoding='utf-8') as f:
         xml_content = f.read()
 
-    # Add thr namespace if not present
-    if 'xmlns:thr=' not in xml_content:
+    # Add thr and media namespaces if not present
+    if 'xmlns:media=' not in xml_content:
+        xml_content = xml_content.replace(
+            '<feed xmlns="http://www.w3.org/2005/Atom"',
+            '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:thr="http://purl.org/syndication/thread/1.0"',
+            1
+        )
+    elif 'xmlns:thr=' not in xml_content:
         xml_content = xml_content.replace(
             '<feed xmlns="http://www.w3.org/2005/Atom"',
             '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0"',
@@ -255,8 +269,8 @@ def generate_atom(archive: list):
         icon_match = re.search(r'(<icon>.*?</icon>)', feed_section)
         generator_match = re.search(r'(<generator[^>]*>.*?</generator>)', feed_section)
 
-        # Reconstruct in desired order
-        new_feed = '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en">\n'
+        # Reconstruct in desired order with all namespaces
+        new_feed = '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en">\n'
         if title_match:
             new_feed += '  ' + title_match.group(1) + '\n'
         if subtitle_match:
@@ -277,6 +291,26 @@ def generate_atom(archive: list):
 
         # Replace the feed opening with our reconstructed one
         xml_content = new_feed + xml_content[feed_match.end():]
+
+    # Add media:thumbnail to each entry
+    for entry_data in archive[:30]:
+        guid = entry_data['hash']
+        entry_id_pattern = f'<id>https://adtheriault.github.io/itoi-daily/#{guid}</id>'
+        if entry_id_pattern in xml_content:
+            # Add thumbnail after the published element
+            thumbnail_tag = f'<media:thumbnail url="{DARLING_IMAGE_URL}" width="200" height="200"/>'
+            published_pattern = '</published>'
+            # Find the published tag that comes after this entry's id
+            entry_start = xml_content.find(entry_id_pattern)
+            if entry_start != -1:
+                # Find the next </published> after this entry
+                published_end = xml_content.find(published_pattern, entry_start)
+                if published_end != -1:
+                    insertion_point = published_end + len(published_pattern)
+                    # Check if thumbnail already exists for this entry
+                    check_range = xml_content[entry_start:entry_start + 1500]
+                    if f'<media:thumbnail' not in check_range:
+                        xml_content = xml_content[:insertion_point] + '\n  ' + thumbnail_tag + xml_content[insertion_point:]
 
     # Write final XML
     with open(FEED_FILE, 'w', encoding='utf-8') as f:
