@@ -134,8 +134,13 @@ Output only the translated title, nothing else.
         prompt = f"""You are translating a Japanese personal essay into natural, literary English.
 Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
 Do not include boilerplate like 'Here is the translation.' Do not explain your output.
-Preserve paragraph breaks (two line breaks = new paragraph).
-Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone.
+
+CRITICAL: Preserve all paragraph structure and line breaks from the original text.
+- Maintain each paragraph as a separate block
+- Use double line breaks to separate paragraphs (blank line between paragraphs)
+- This preserves readability—do NOT output as one continuous block
+- Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone
+
 If there is a phrase or idiom that doesn't translate easily, include a minimal footnote only if necessary.
 
 {japanese_text}"""
