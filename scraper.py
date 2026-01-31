@@ -135,10 +135,11 @@ Output only the translated title, nothing else.
 Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
 Do not include boilerplate like 'Here is the translation.' Do not explain your output.
 
-CRITICAL: Preserve all paragraph structure and line breaks from the original text.
-- Maintain each paragraph as a separate block
-- Use double line breaks to separate paragraphs (blank line between paragraphs)
-- This preserves readability—do NOT output as one continuous block
+CRITICAL: Format your output as HTML to preserve paragraph structure.
+- Wrap each paragraph in <p> tags: <p>Paragraph text here.</p>
+- This is for an Atom feed where raw line breaks are collapsed by feed readers
+- Do NOT use markdown formatting or plain text with line breaks
+- Output ONLY the <p> tags with content—no surrounding <div> or <html> wrapper
 - Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone
 
 If there is a phrase or idiom that doesn't translate easily, include a minimal footnote only if necessary.
