@@ -69,26 +69,39 @@ def scrape_essay() -> Optional[dict]:
         # Get all paragraphs from the body
         paragraphs = body_el.find_all('p')
         if paragraphs:
-            # Extract text from each <p>, but also handle <br> tags within as paragraph breaks
+            # Each <p> tag is a true paragraph
+            # <br> tags within are soft line breaks (common in Japanese essays for visual formatting)
             all_paragraphs = []
             for p in paragraphs:
-                # Replace <br> tags with a marker before extracting text
+                # Replace <br> tags with space - they're soft breaks within a paragraph
                 for br in p.find_all('br'):
-                    br.replace_with('\n\n')
+                    br.replace_with(' ')
                 text = p.get_text()
-                # Split on double newlines (from <br> replacement) and add each as separate paragraph
-                for para in text.split('\n\n'):
-                    para = para.strip()
-                    if para:
-                        all_paragraphs.append(para)
+                # Clean up multiple spaces and normalize whitespace
+                text = ' '.join(text.split())
+                if text:
+                    all_paragraphs.append(text)
             body = '\n\n'.join(all_paragraphs)
         else:
-            # No <p> tags - try handling <br> tags directly in body
+            # No <p> tags - use blank lines as paragraph separators
+            # <br> tags are soft line breaks within paragraphs
             for br in body_el.find_all('br'):
-                br.replace_with('\n\n')
+                br.replace_with(' ')
             body = body_el.get_text()
-            # Normalize paragraph breaks
-            body = '\n\n'.join(para.strip() for para in body.split('\n\n') if para.strip())
+            # Normalize: collapse whitespace within paragraphs
+            lines = body.split('\n')
+            paragraphs = []
+            current_para = []
+            for line in lines:
+                line = line.strip()
+                if line:
+                    current_para.append(line)
+                elif current_para:
+                    paragraphs.append(' '.join(current_para))
+                    current_para = []
+            if current_para:
+                paragraphs.append(' '.join(current_para))
+            body = '\n\n'.join(paragraphs)
 
     # Strategy 2: Fallback to broader search if specific selectors fail
     if not body:
@@ -97,16 +110,16 @@ def scrape_essay() -> Optional[dict]:
             if '糸井重里' in text and len(text) > 500:
                 paragraphs = section.find_all('p')
                 if paragraphs:
-                    # Handle <br> tags within <p> tags as paragraph breaks
+                    # Each <p> tag is a true paragraph
+                    # <br> tags within are soft line breaks
                     all_paragraphs = []
                     for p in paragraphs:
                         for br in p.find_all('br'):
-                            br.replace_with('\n\n')
+                            br.replace_with(' ')
                         p_text = p.get_text()
-                        for para in p_text.split('\n\n'):
-                            para = para.strip()
-                            if para:
-                                all_paragraphs.append(para)
+                        p_text = ' '.join(p_text.split())
+                        if p_text:
+                            all_paragraphs.append(p_text)
                     body = '\n\n'.join(all_paragraphs)
                     h_tag = section.find(['h1', 'h2', 'h3'])
                     if h_tag and not title:
@@ -169,32 +182,19 @@ Output only the translated title, nothing else.
     else:
         # Count paragraphs to tell Claude exactly how many <p> tags to output
         paragraph_count = len([p for p in japanese_text.split('\n\n') if p.strip()])
-        prompt = f"""You are translating a Japanese personal essay into natural, literary English.
-Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
-Do not include boilerplate like 'Here is the translation.' Do not explain your output.
+        prompt = f"""Translate this Japanese personal essay into natural, literary English.
+Preserve the author's voice and tone. Do not include boilerplate or explanations.
 
-CRITICAL: The input has {paragraph_count} paragraphs separated by blank lines. You MUST output exactly {paragraph_count} separate <p> tags.
+The input has {paragraph_count} paragraphs. Output exactly {paragraph_count} <p> tags, one per paragraph.
 
-Example - if the input is:
-段落1です。
-
-段落2です。
-
-段落3です。
-
-Then output MUST be:
-<p>This is paragraph 1.</p>
-<p>This is paragraph 2.</p>
-<p>This is paragraph 3.</p>
+Format:
+<p>First paragraph translation here.</p>
+<p>Second paragraph translation here.</p>
 
 Rules:
-- Each blank-line-separated paragraph becomes ONE <p>...</p> tag
-- Do NOT combine multiple paragraphs into one <p> tag
-- Do NOT use markdown or plain text
-- Output ONLY the <p> tags—no wrapper elements
-
-IMPORTANT: Preserve proper names and brand names:
-- "ほぼ日刊イトイ新聞" or "ほぼ日" should be rendered as "Hobonichi"
+- One paragraph = one <p> tag (do not split or combine paragraphs)
+- Output ONLY the <p> tags, no other markup or text
+- Render "ほぼ日刊イトイ新聞" or "ほぼ日" as "Hobonichi"
 
 {japanese_text}"""
 
