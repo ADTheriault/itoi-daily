@@ -140,22 +140,34 @@ Output only the translated title, nothing else.
 
 {japanese_text}"""
     else:
+        # Count paragraphs to tell Claude exactly how many <p> tags to output
+        paragraph_count = len([p for p in japanese_text.split('\n\n') if p.strip()])
         prompt = f"""You are translating a Japanese personal essay into natural, literary English.
 Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
 Do not include boilerplate like 'Here is the translation.' Do not explain your output.
 
-CRITICAL: The input text preserves the original paragraph structure with blank lines between paragraphs.
-Format your output as HTML, wrapping EACH paragraph in <p> tags:
-- Each paragraph separated by a blank line in the input should become a separate <p>...</p> in the output
-- This is for an Atom feed where raw line breaks are collapsed by feed readers
-- Do NOT use markdown formatting or plain text with line breaks
-- Output ONLY the <p> tags with content—no surrounding <div> or <html> wrapper
-- Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone
+CRITICAL: The input has {paragraph_count} paragraphs separated by blank lines. You MUST output exactly {paragraph_count} separate <p> tags.
+
+Example - if the input is:
+段落1です。
+
+段落2です。
+
+段落3です。
+
+Then output MUST be:
+<p>This is paragraph 1.</p>
+<p>This is paragraph 2.</p>
+<p>This is paragraph 3.</p>
+
+Rules:
+- Each blank-line-separated paragraph becomes ONE <p>...</p> tag
+- Do NOT combine multiple paragraphs into one <p> tag
+- Do NOT use markdown or plain text
+- Output ONLY the <p> tags—no wrapper elements
 
 IMPORTANT: Preserve proper names and brand names:
-- "ほぼ日刊イトイ新聞" or "ほぼ日" should be rendered as "Hobonichi" (not "Hobo nikkan" or other variations)
-
-If there is a phrase or idiom that doesn't translate easily, include a minimal footnote only if necessary.
+- "ほぼ日刊イトイ新聞" or "ほぼ日" should be rendered as "Hobonichi"
 
 {japanese_text}"""
 
