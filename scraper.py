@@ -142,6 +142,9 @@ CRITICAL: Format your output as HTML to preserve paragraph structure.
 - Output ONLY the <p> tags with content—no surrounding <div> or <html> wrapper
 - Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone
 
+IMPORTANT: Preserve proper names and brand names:
+- "ほぼ日刊イトイ新聞" or "ほぼ日" should be rendered as "Hobonichi" (not "Hobo nikkan" or other variations)
+
 If there is a phrase or idiom that doesn't translate easily, include a minimal footnote only if necessary.
 
 {japanese_text}"""
