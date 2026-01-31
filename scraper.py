@@ -90,20 +90,29 @@ def scrape_essay() -> Optional[dict]:
         print("Could not extract essay content")
         return None
 
-    # Clean up the essay text
-    lines = body.split('\n')
-    cleaned_lines = []
-    seen_lines = set()
-    for line in lines:
-        # Skip footer lines about update times
-        if 'ほぼ日の更新時間' in line:
+    # Clean up the essay text while preserving paragraph breaks
+    paragraphs = body.split('\n\n')
+    cleaned_paragraphs = []
+    seen_paragraphs = set()
+    for para in paragraphs:
+        # Clean within paragraph (handle any single newlines)
+        para_lines = para.split('\n')
+        cleaned_para_lines = []
+        for line in para_lines:
+            # Skip footer lines about update times
+            if 'ほぼ日の更新時間' in line:
+                continue
+            cleaned_para_lines.append(line)
+        para = '\n'.join(cleaned_para_lines).strip()
+
+        if not para:
             continue
-        # Skip duplicate lines
-        if line.strip() in seen_lines:
+        # Skip duplicate paragraphs
+        if para in seen_paragraphs:
             continue
-        seen_lines.add(line.strip())
-        cleaned_lines.append(line)
-    body = '\n'.join(cleaned_lines).strip()
+        seen_paragraphs.add(para)
+        cleaned_paragraphs.append(para)
+    body = '\n\n'.join(cleaned_paragraphs).strip()
 
     # Generate a hash to detect duplicate content
     content_hash = hashlib.md5(body.encode()).hexdigest()[:12]
@@ -135,8 +144,9 @@ Output only the translated title, nothing else.
 Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
 Do not include boilerplate like 'Here is the translation.' Do not explain your output.
 
-CRITICAL: Format your output as HTML to preserve paragraph structure.
-- Wrap each paragraph in <p> tags: <p>Paragraph text here.</p>
+CRITICAL: The input text preserves the original paragraph structure with blank lines between paragraphs.
+Format your output as HTML, wrapping EACH paragraph in <p> tags:
+- Each paragraph separated by a blank line in the input should become a separate <p>...</p> in the output
 - This is for an Atom feed where raw line breaks are collapsed by feed readers
 - Do NOT use markdown formatting or plain text with line breaks
 - Output ONLY the <p> tags with content—no surrounding <div> or <html> wrapper
