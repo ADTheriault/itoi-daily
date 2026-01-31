@@ -135,12 +135,14 @@ Output only the translated title, nothing else.
 Do not translate word-for-word—your goal is to preserve the author's original voice, tone, and nuance for a native English reader.
 Do not include boilerplate like 'Here is the translation.' Do not explain your output.
 
-CRITICAL: Format your output as HTML to preserve paragraph structure.
+CRITICAL: Format your output as HTML with proper paragraph breaks.
+- Break the text into natural, readable paragraphs at logical topic shifts or breathing points
 - Wrap each paragraph in <p> tags: <p>Paragraph text here.</p>
 - This is for an Atom feed where raw line breaks are collapsed by feed readers
 - Do NOT use markdown formatting or plain text with line breaks
 - Output ONLY the <p> tags with content—no surrounding <div> or <html> wrapper
 - Respect any formatting (e.g., unusual spacing, symbols like ・, etc.) where it contributes to tone
+- Even if the original is one continuous block, please break it into 3-5 paragraphs for readability
 
 IMPORTANT: Preserve proper names and brand names:
 - "ほぼ日刊イトイ新聞" or "ほぼ日" should be rendered as "Hobonichi" (not "Hobo nikkan" or other variations)
