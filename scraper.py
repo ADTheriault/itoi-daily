@@ -69,9 +69,26 @@ def scrape_essay() -> Optional[dict]:
         # Get all paragraphs from the body
         paragraphs = body_el.find_all('p')
         if paragraphs:
-            body = '\n\n'.join(p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True))
+            # Extract text from each <p>, but also handle <br> tags within as paragraph breaks
+            all_paragraphs = []
+            for p in paragraphs:
+                # Replace <br> tags with a marker before extracting text
+                for br in p.find_all('br'):
+                    br.replace_with('\n\n')
+                text = p.get_text()
+                # Split on double newlines (from <br> replacement) and add each as separate paragraph
+                for para in text.split('\n\n'):
+                    para = para.strip()
+                    if para:
+                        all_paragraphs.append(para)
+            body = '\n\n'.join(all_paragraphs)
         else:
-            body = body_el.get_text(strip=True)
+            # No <p> tags - try handling <br> tags directly in body
+            for br in body_el.find_all('br'):
+                br.replace_with('\n\n')
+            body = body_el.get_text()
+            # Normalize paragraph breaks
+            body = '\n\n'.join(para.strip() for para in body.split('\n\n') if para.strip())
 
     # Strategy 2: Fallback to broader search if specific selectors fail
     if not body:
@@ -80,7 +97,17 @@ def scrape_essay() -> Optional[dict]:
             if '糸井重里' in text and len(text) > 500:
                 paragraphs = section.find_all('p')
                 if paragraphs:
-                    body = '\n\n'.join(p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True))
+                    # Handle <br> tags within <p> tags as paragraph breaks
+                    all_paragraphs = []
+                    for p in paragraphs:
+                        for br in p.find_all('br'):
+                            br.replace_with('\n\n')
+                        p_text = p.get_text()
+                        for para in p_text.split('\n\n'):
+                            para = para.strip()
+                            if para:
+                                all_paragraphs.append(para)
+                    body = '\n\n'.join(all_paragraphs)
                     h_tag = section.find(['h1', 'h2', 'h3'])
                     if h_tag and not title:
                         title = h_tag.get_text(strip=True)
