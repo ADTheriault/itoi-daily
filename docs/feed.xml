@@ -1,22 +1,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en">
   <title type="text">Today's Darling</title>
   <subtitle>Daily essays by Shigesato Itoi from 1101.com, translated to English.</subtitle>
-  <updated>2026-01-31T18:36:45.965320+00:00</updated>
+  <updated>2026-01-31T00:00:00+00:00</updated>
   <link href="https://www.1101.com/" rel="alternate" type="text/html"/>
   <id>https://adtheriault.github.io/itoi-daily/feed.xml</id>
   <link href="https://adtheriault.github.io/itoi-daily/feed.xml" rel="self" type="application/atom+xml"/>
   <icon>https://adtheriault.github.io/itoi-daily/hobonichi%20logo.png</icon>
-<entry>
-    <id>https://adtheriault.github.io/itoi-daily/#5cb22a09388a</id>
-    <title>A Mother and Her Child.</title>
-    <updated>2026-01-31T18:36:27.019754+00:00</updated>
-    <author>
-      <name>Shigesato Itoi</name>
-    </author>
-    <content type="html">&lt;div style="text-align: center; margin-bottom: 20px;"&gt;&lt;img src="https://www.1101.com/home/2025/images/home/darling.png" alt="Hobonichi Darling" style="max-width: 300px; height: auto;"/&gt;&lt;/div&gt;&lt;p&gt;・I read something written by a friend about losing their mother. It was written not long after it happened, and the words still seemed to carry body warmth—it made me cry a little. To me, this person might be a stranger, but there was something precious between mother and child right there on the page, and though it was sad, I found myself feeling envious too. A little earlier that day, I'd been talking with another friend who told me about troubled kids who'd done all sorts of "bad things," but the ones who had memories of being loved by even just one person—usually their mother—were the ones who found it easier to turn their lives around. Even hearing that story made me think "how nice" with a tinge of envy. It might seem strange for a grown man, an old man even, but nothing makes me happier than watching mothers and children getting along well together. I watch my daughter with her daughter and think how wonderful it is. I used to look at my boss and his mother with that same kind of longing. I think it's because I never had that relationship with my own mother, so for a long time I practiced being "fine" with that absence. But as I've gotten older, maybe I've become more honest—I can now admit that being loved unconditionally by a mother really is a beautiful thing. A child being held tight by their mother, acting spoiled—could there be any greater happiness? I don't have a single memory like that in my entire life. No, no—I don't want anyone feeling sorry for me. I just want to give myself a little "you did well." That's all I need—just me saying it to myself. To all the mothers, all the children, all those who love and are loved: what you have is a magnificent treasure. Thank you for coming to Hobonichi again today. I'm going to hit send without reading this over—otherwise I'll just delete it.&lt;/p&gt;</content>
-    <link href="https://www.1101.com/"/>
-    <summary>This essay reflects on the author's lifelong longing for maternal love he never experienced, finding both beauty and envy in witnessing the loving relationships between mothers and children around him. Through honest self-reflection, he acknowledges this absence while offering himself gentle self-compassion and reminding others to treasure the love they have.</summary>
-    <published>2026-01-31T18:36:27.019754+00:00</published>
-  <media:thumbnail url="https://www.1101.com/home/2025/images/home/darling.png" width="200" height="200"/>
-  </entry>
 </feed>
